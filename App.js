@@ -1,20 +1,66 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import HomeScreen from "./HomeScreen";
+import SecondScreen from "./SecondScreen";
+import ThirdScreen from "./ThirdScreen";
+import { AntDesign } from "@expo/vector-icons";
 
-export default function App() {
+const Drawer = createDrawerNavigator();
+
+function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Screen
+          name="Home Screen"
+          component={HomeScreen}
+          options={{
+            drawerLabel: "Home",
+
+            headerStyle: {
+              backgroundColor: "#f4511e", //Set Header color
+            },
+            headerTintColor: "#fff", //Set Header text color
+            headerTitleStyle: {
+              fontWeight: "bold", //Set Header text style
+            },
+            drawerIcon: () => <AntDesign name="home" size={24} color="black" />,
+          }}
+        />
+        <Drawer.Screen
+          name="Second Screen"
+          component={SecondScreen}
+          options={{
+            drawerLabel: "Scecond",
+            headerStyle: {
+              backgroundColor: "#f4511e", //Set Header color
+            },
+            headerTintColor: "#fff", //Set Header text color
+            headerTitleStyle: {
+              fontWeight: "bold", //Set Header text style
+            },
+            drawerIcon: () => <AntDesign name="book" size={24} color="black" />,
+          }}
+        />
+        <Drawer.Screen
+          name="Third Screen"
+          component={ThirdScreen}
+          options={{
+            drawerLabel: "Third",
+            headerStyle: {
+              backgroundColor: "#f4511e", //Set Header color
+            },
+            headerTintColor: "#fff", //Set Header text color
+            headerTitleStyle: {
+              fontWeight: "bold", //Set Header text style
+            },
+            drawerIcon: () => <AntDesign name="linechart" size={24} color="black" />,
+          }}
+        />
+      </Drawer.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
